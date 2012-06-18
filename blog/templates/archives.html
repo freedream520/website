@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+<html>
+
+	<head> 
+		<title>Blog Archives</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
+	</head>
+
+	<body>
+		{% block content %}
+
+		{% for post in object_list %}
+
+		<p>{{ post.created|date:"Y-m-d" }} <a href="/blog/{{post.id}}">{{ post.title }}</a></p>
+
+		{% endfor %}
+
+		{% endblock %}
+	</body>
+
+</html>

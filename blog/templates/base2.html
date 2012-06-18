@@ -1,0 +1,36 @@
+<DOCTYPE! html>
+<html>
+	<head>
+	<title> 
+	Juinwoof: The life,thoughts,and photography of Adam D. Wisniewski
+	</title>
+	<link rel ="stylesheet" type="text/css" href="/static/css/main.css"/>
+	</head>
+	
+	<body>
+		<header><h1><a href="/blog" title="Homepage">Blog</a></h1></header>
+		<nav>
+		<a href="/blog/archives" class="archives">Archives</a>
+		<a href="/blog/feed" class="rss">RSS Feed</a>
+		{% if user.is_staff %}
+		<a href="{%url admin:app_list app_label='blog'">Admin</a>
+		{% endif %}
+		<!--<a href="/blog/photologue" class="photologue">Photography</a>
+		<a href="/blog/contact" class="contact">Contact</a> -->
+		</nav>
+		
+		<section>
+			<article>
+	
+			<!-- posts -->
+			{% block content %}
+			{% endblock %}
+	
+			</article>
+		</section>
+		
+		<footer>
+			<div class="about">
+				<strong>Adam Wisniewski</strong> - <em>Programmer,Traveler,Photographer</em>
+			</div>
+</html>

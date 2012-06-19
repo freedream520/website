@@ -2,13 +2,28 @@ from django.db import models
 from taggit.managers import TaggableManager
 
 
+# Hey Adam! The problem here was that python doesn't have "Foward Declaration"
+# You've got to declare classes, methods, etc. before you reference them
+# see http://stackoverflow.com/questions/1590608/is-it-possible-to-forward-declare-a-function-in-python
+# As you can see, there are ways around that BUT in this case
+# Your two objects don't both need to reference each other
+# In this configuration, the PostPhoto has a ForeignKey relation to theh Post
+# So:
+# We can get the Post corresponding to a PostPhoto really easy:
+# postPhotoObject.assocPost
+# AND we can still get all the PostPhotos corresponding to a Post:
+# postObject.postphoto_set.all()
+# This is possible due to the implied reverse relationship! Sweet
+# See https://docs.djangoproject.com/en/dev/topics/db/queries/ for more such craziness
+
+# Lookin good!
+
 # Blog Post
 class Post(models.Model):
 	title = models.CharField(max_length = 150)
 	body = models.TextField()
 	created = models.DateTimeField()
 	tags = TaggableManager()
-	photos = models.ManyToManyField(PostPhoto)
 	
 	def __unicode__(self):
 		return self.title
@@ -30,8 +45,3 @@ class PostPhoto(models.Model):
 	def __unicode__(self):
 		return self.name
 
-
-
-
-
- 

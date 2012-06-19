@@ -1,5 +1,8 @@
 # Django settings for blog project.
 
+# It's nice to describe different settings for development and deploying
+DEPLOY = False
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -8,18 +11,27 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'blog',                      # Or path to database file if using sqlite3.
-        'USER': 'rdog',                      # Not used with sqlite3.
-        'PASSWORD': 'winkwink',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
+if DEPLOY:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 'blog',                      # Or path to database file if using sqlite3.
+            'USER': 'rdog',                      # Not used with sqlite3.
+            'PASSWORD': 'winkwink',                  # Not used with sqlite3.
+            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+            'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
+        }
     }
-}
-
+else:
+    # sqlite3 is a nice file-based db that doesn't require any additional software install
+    # It's not fit for production (because the whole db file is locked during reading/writing)
+    # But for development it's super swell. The contents can be easily migrated to postgres etc.
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 'blog',                      # Or path to database file if using sqlite3.
+        }
+    }
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -126,7 +138,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 	'taggit',
 	'blog',
-	'photologue',	
+	'photologue',
 )
 
 # A sample logging configuration. The only tangible logging

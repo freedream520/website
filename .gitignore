@@ -1,0 +1,6 @@
+# compiled python
+*.pyc
+
+# Mac OS X cache files
+.DS_Store
+

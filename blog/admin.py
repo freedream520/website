@@ -1,10 +1,11 @@
 from django.contrib import admin 
-from blog.models import Post
+from blog.models import Post,PostPhoto
 
-# class postPhotoInline(admin.TabularInline):
-	# model = postPhoto
+class postPhotoInline(admin.TabularInline):
+	model = PostPhoto
 
-# class postAdmin(VersionAdmin):
-	# inlines = [postPhotoInline,]
+class postAdmin(admin.ModelAdmin):
+	inlines = [postPhotoInline,]
+	#prepopulated_fields = {"slug" : ('created',)}
 
 admin.site.register(Post)

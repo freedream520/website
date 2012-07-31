@@ -16,18 +16,7 @@ from taggit.managers import TaggableManager
 # This is possible due to the implied reverse relationship! Sweet
 # See https://docs.djangoproject.com/en/dev/topics/db/queries/ for more such craziness
 
-# Lookin good!
-
-# Blog Post
-class Post(models.Model):
-	title = models.CharField(max_length = 150)
-	body = models.TextField()
-	created = models.DateTimeField()
-	tags = TaggableManager()
-	
-	def __unicode__(self):
-		return self.title
-
+# Lookin good
 
 
 #Photo attached to blog post
@@ -40,7 +29,20 @@ class PostPhoto(models.Model):
 	created = models.DateTimeField(editable=False)
 	width = models.IntegerField(editable=False)
 	height = models.IntegerField(editable=False)
-	assocPost = models.ForeignKey(Post)
+	#assocPost = models.ForeignKey(Post)
 	
 	def __unicode__(self):
 		return self.name
+		
+# Blog Post
+class Post(models.Model):
+	title = models.CharField(max_length = 150)
+	body = models.TextField()
+	created = models.DateTimeField()
+	tags = TaggableManager()
+	images = models.ManyToManyField(PostPhoto,blank=True)
+	slug = models.SlugField(unique_for_date='created',help_text='WIP')
+
+	def __unicode__(self):
+		return self.title
+

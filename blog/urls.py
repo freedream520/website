@@ -9,7 +9,7 @@ class blogFeed(Feed):
 	link = "/blog/feed/"
 	
 	def items(self):
-		return Post.objects.all().order_by("-created")[:2]
+		return Post.objects.all().order_by("-created")[:5]
 	def	item_title(self,item):
 		return item.title
 	def item_description(self,item):
@@ -22,9 +22,13 @@ urlpatterns = patterns('blog.views',
     # Examples:
     # url(r'^$', 'blog.views.home', name='home'),
     url(r'^$',ListView.as_view(
-						queryset=Post.objects.all().order_by("-created")[:2],
+						queryset=Post.objects.all().order_by("-created")[:5],
 						template_name="blog.html")),
-	url(r'^(?P<pk>\d+)$',DetailView.as_view(
+	# url(r'^(?P<pk>\d+)$',DetailView.as_view(
+							# model=Post,
+							# template_name="post.html")),
+	url(r'^(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})/(?P<slug>[-\w]+)/$',DetailView.as_view(
+							#slug_field='slug',
 							model=Post,
 							template_name="post.html")),
 	url(r'^archives/$',ListView.as_view(

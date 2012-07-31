@@ -17,8 +17,7 @@ html {
     background-image: -moz-linear-gradient(top, rgb(20,50,100) 90%, rgb(0,0,60) 100%);
     background-image: -webkit-linear-gradient(top, rgb(20,50,100) 90%, rgb(0,0,60) 100%);
     background-image: -ms--linear-gradient(top, rgb(20,50,100) 90%, rgb(0,0,60) 100%);
-
-     background-image: -webkit-gradient(
+    background-image: -webkit-gradient(
     linear,
     left top,
     left bottom,
@@ -30,19 +29,25 @@ html {
 body {
     margin: 0 auto;
     min-height: 100%;
-
     max-width: 640px;
     margin: 0 auto;
     /* background: rgba(120, 50, 255, 0.5); */
     padding: 18px;
-
-
 }
 
 
 h2 {
     font-family:  "sans-serif";
     color: #060606;
+}
+
+
+ .post_meta{
+	color: #868686;
+	/* display: inline; */
+	font-style: italic;
+	font-size: .75em;
+	text-align: right;
 }
 
 h1 a, h2 a {
@@ -103,14 +108,6 @@ h2 a, h2 {
 	text-decoration: none;
 }
 
-.post_meta{
-	color: #868686;
-	/* text-decoration: inline; */
-	font-style: italic;
-	font-size: .8em
-}
-
-
 
 .post_body {
     padding-bottom: 20px;
@@ -129,8 +126,6 @@ h2 a, h2 {
 
 .tags {
     padding: 0 0 0 21px;
-    /* Icon from http://www.gentleface.com/free_icon_set.html */
-    background: url(static/img/tag_icon.png) no-repeat 0 .25em;
 }
 
 footer {
@@ -146,22 +141,4 @@ footer {
 footer a{
 	text-decoration:none;
 	color:black;
-}
-
-.poweredby a {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    text-indent: -9999px;
-    width: 80px;
-    height: 15px;
-    background: url(../img/django-powered.png) no-repeat top left;
-    margin-top: 6px;
-}
-.social {
-    color: #999;
-    font-size: 80%;
-}
-.social a {
-    color: #666;
 }

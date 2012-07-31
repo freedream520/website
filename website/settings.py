@@ -1,7 +1,7 @@
 # Django settings for blog project.
 
 # It's nice to describe different settings for development and deploying
-DEPLOY = False
+DEPLOY = True
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -12,7 +12,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 if DEPLOY:
-    DATABASES = {
+	DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
             'NAME': 'blog',                      # Or path to database file if using sqlite3.
@@ -21,7 +21,7 @@ if DEPLOY:
             'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
             'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
         }
-    }
+   }
 else:
     # sqlite3 is a nice file-based db that doesn't require any additional software install
     # It's not fit for production (because the whole db file is locked during reading/writing)
@@ -60,12 +60,14 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = 'C:/dev/website/media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
+
+ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -137,7 +139,9 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 	'taggit',
+	'tagging',
 	'blog',
+	#'imagekit',
 	'photologue',
 )
 
